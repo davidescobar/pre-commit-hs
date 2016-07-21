@@ -1,0 +1,48 @@
+name:                pre-commit
+version:             0.1.0.0
+synopsis:            Git pre-commit hook that runs unit tests for Ruby (RSpec) and Elixir (ExUnit)
+description:         Please see README.md
+homepage:            https://github.com/githubuser/pre-commit#readme
+license:             BSD3
+license-file:        LICENSE
+author:              J. David Escobar
+maintainer:          davidescobar1976@gmail.com
+copyright:           2016 J. David Escobar
+category:            Command line
+build-type:          Simple
+-- extra-source-files:
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     Lib
+  build-depends:       base >= 4.7 && < 5,
+                       containers,
+                       directory,
+                       filepath,
+                       text
+  default-language:    Haskell2010
+
+executable pre-commit-exe
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -O2 -Wall -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base,
+                       process,
+                       text,
+                       text-icu,
+                       pre-commit
+  default-language:    Haskell2010
+
+test-suite pre-commit-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base
+                     , pre-commit
+  ghc-options:         -O2 -Wall -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com/githubuser/pre-commit
